@@ -16,13 +16,12 @@
 
 package com.couchbase.client.spring.cache;
 
-import java.util.*;
-
 import com.couchbase.client.java.Bucket;
-
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.support.AbstractCacheManager;
+
+import java.util.*;
 
 /**
  * The {@link CouchbaseCacheManager} orchestrates {@link CouchbaseCache} instances.

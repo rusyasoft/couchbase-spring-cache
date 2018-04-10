@@ -31,14 +31,17 @@ import org.springframework.context.annotation.Configuration;
 public class TestConfiguration {
 
   public String seedNode() {
-    return System.getProperty("couchbase.seedNode", "127.0.0.1");
+    //return System.getProperty("couchbase.seedNode", "127.0.0.1");
+    return System.getProperty("couchbase.seedNode", "http://es-deal-qa.tmonc.net:8091");
   }
 
   public String bucketName() {
-    return System.getProperty("couchbase.bucketName", "default");
+//    return System.getProperty("couchbase.bucketName", "default");
+    return System.getProperty("couchbase.bucketName", "cache");
   }
   public String bucketPassword() {
-    return System.getProperty("couchbase.bucketPassword", "");
+//    return System.getProperty("couchbase.bucketPassword", "");
+    return System.getProperty("couchbase.bucketPassword", "cbadmin!!");
   }
 
   @Bean(destroyMethod = "disconnect")

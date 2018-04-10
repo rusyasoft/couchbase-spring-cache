@@ -17,36 +17,24 @@
 package com.couchbase.client.spring.cache;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.io.Serializable;
-import java.util.NoSuchElementException;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import com.couchbase.client.java.Bucket;
-import com.couchbase.client.java.Cluster;
 import com.couchbase.client.java.document.JsonDocument;
 import com.couchbase.client.java.document.json.JsonObject;
 import com.couchbase.client.java.error.DocumentDoesNotExistException;
-import org.junit.Assume;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache.ValueWrapper;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.io.Serializable;
+import java.util.NoSuchElementException;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static org.junit.Assert.*;
 
 /**
  * Tests the CouchbaseCache class and verifies its functionality.
@@ -89,7 +77,8 @@ public class CouchbaseCacheTests {
     CouchbaseCache cache = new CouchbaseCache(cacheName, client);
 
     String key = "couchbase-cache-test";
-    String value = "Hello World!";
+    String value = " {\"cacheMsg\" : \"Hello World!\"}";
+
     cache.put(key, value);
 
     String stored = cache.get(key, String.class);
