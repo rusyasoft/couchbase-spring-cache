@@ -15,16 +15,17 @@
  */
 package com.couchbase.client.spring.cache.wiring;
 
-import java.io.Serializable;
-
 import com.couchbase.client.spring.cache.CouchbaseCache;
+import com.couchbase.client.spring.cache.TestTypeClass;
+import com.couchbase.client.spring.cache.annotation.MethodCache;
 import com.couchbase.client.spring.cache.wiring.javaConfig.CacheEnabledTestConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
+
+import java.io.Serializable;
 
 /**
  * A test Service with {@link Cacheable} methods to demo and test the wiring of a {@link CouchbaseCache}.
@@ -86,6 +87,16 @@ public class CachedService {
     this.counterGetDataWrongCache= 0L;
   }
 
+  //rustamchange
+  @MethodCache(expiry = 120)
+  public TestTypeClass getTestCache(TestTypeClass input) {
+    System.out.println("---- Inside getTestCache input = " + input + " -----");
+    input.a = 10;
+    input.b = 20;
+    input.c = 30;
+    return input;
+  }
+
   public static class Data implements Serializable {
     private static final long serialVersionUID = 101106066653013623L;
 
@@ -140,5 +151,7 @@ public class CachedService {
           ", intValue=" + intValue +
           '}';
     }
+
+
   }
 }

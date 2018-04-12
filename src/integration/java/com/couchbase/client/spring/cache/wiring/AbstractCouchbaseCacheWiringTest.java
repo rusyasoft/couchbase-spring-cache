@@ -15,25 +15,20 @@
  */
 package com.couchbase.client.spring.cache.wiring;
 
-import static org.junit.Assert.*;
-
 import com.couchbase.client.java.Bucket;
 import com.couchbase.client.java.Cluster;
 import com.couchbase.client.spring.cache.CacheBuilder;
 import com.couchbase.client.spring.cache.CouchbaseCacheManager;
-import com.couchbase.client.spring.cache.wiring.CachedService;
+import com.couchbase.client.spring.cache.TestTypeClass;
 import com.couchbase.client.spring.cache.wiring.javaConfig.CacheEnabledTestConfiguration;
 import org.junit.After;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
-import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.interceptor.SimpleKey;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import static org.junit.Assert.*;
 
 /**
  * Common test case for the wiring and execution of a {@link Cacheable}-annotated {@link CachedService}.
@@ -161,5 +156,21 @@ public abstract class AbstractCouchbaseCacheWiringTest {
   private static String cbKey(Object cacheKey) {
     return "cache:" + CacheEnabledTestConfiguration.DATA_CACHE_NAME
         + ":" + String.valueOf(cacheKey);
+  }
+
+
+  //rustamchange
+  @Test
+  public void testGetTestCache() {
+    System.out.println("-- before calling getTestCache ");
+
+    TestTypeClass testTypeClass = new TestTypeClass();
+    testTypeClass.a = 1;
+    testTypeClass.b = 2;
+    testTypeClass.c = 3;
+
+    service.getTestCache(testTypeClass);
+    System.out.println("-- after calling getTestCache ");
+
   }
 }

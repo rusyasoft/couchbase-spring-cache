@@ -18,7 +18,7 @@ package com.couchbase.client.spring.cache;
 import com.couchbase.client.java.Bucket;
 import com.couchbase.client.java.Cluster;
 import com.couchbase.client.java.CouchbaseCluster;
-
+import com.couchbase.client.spring.cache.aspect.CacheAspect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -27,8 +27,14 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Simon Baslé
  */
+
 @Configuration
 public class TestConfiguration {
+
+  @Bean
+  public CacheAspect cacheAspect() {
+    return new CacheAspect();
+  }
 
   public String seedNode() {
     //return System.getProperty("couchbase.seedNode", "127.0.0.1");

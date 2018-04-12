@@ -16,32 +16,28 @@
 
 package com.couchbase.client.spring.cache;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Callable;
-
+import com.couchbase.client.deps.com.fasterxml.jackson.core.JsonProcessingException;
+import com.couchbase.client.deps.com.fasterxml.jackson.databind.ObjectMapper;
 import com.couchbase.client.java.Bucket;
 import com.couchbase.client.java.bucket.BucketManager;
 import com.couchbase.client.java.document.Document;
+import com.couchbase.client.java.document.RawJsonDocument;
 import com.couchbase.client.java.document.SerializableDocument;
 import com.couchbase.client.java.document.json.JsonObject;
 import com.couchbase.client.java.error.DocumentAlreadyExistsException;
 import com.couchbase.client.java.error.QueryExecutionException;
-import com.couchbase.client.java.view.AsyncViewResult;
-import com.couchbase.client.java.view.AsyncViewRow;
-import com.couchbase.client.java.view.DefaultView;
-import com.couchbase.client.java.view.DesignDocument;
-import com.couchbase.client.java.view.Stale;
-import com.couchbase.client.java.view.View;
-import com.couchbase.client.java.view.ViewQuery;
+import com.couchbase.client.java.view.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.Cache;
+import org.springframework.cache.support.SimpleValueWrapper;
 import rx.Observable;
 import rx.functions.Func1;
 
-import org.springframework.cache.Cache;
-import org.springframework.cache.support.SimpleValueWrapper;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Callable;
 
 /**
  * The {@link CouchbaseCache} class implements the Spring {@link Cache} interface on top of Couchbase Server and the
@@ -248,7 +244,18 @@ public class CouchbaseCache implements Cache {
       }
       String documentId = getDocumentId(key.toString());
       SerializableDocument doc = SerializableDocument.create(documentId, ttl, (Serializable) value);
-      client.upsert(doc);
+
+        //client.upsert(doc);
+        RawJsonDocument rawJsonDocument;
+        String id = String.valueOf(key);
+        try {
+            String contents =  new ObjectMapper().writeValueAsString(value);
+            client.upsert(RawJsonDocument.create(id, 0, contents));
+        } catch (JsonProcessingException e) {
+
+        }
+
+
     } else {
       evict(key);
     }
