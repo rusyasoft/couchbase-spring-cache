@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.couchbase.client.spring.cache;
+package com.tmoncorp.api.dealinfo.cache;
 
 
 import com.tmoncorp.api.dealinfo.testservice.CachedService;
@@ -37,7 +37,6 @@ public class CouchbaseCacheTests {
   @Autowired
   public CachedService service;
 
-  //rustamchange
   @Test
   public void testGetTestCache() {
     System.out.println("-- before calling getTestCache ");

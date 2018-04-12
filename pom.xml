@@ -216,7 +216,7 @@
 
         <testResources>
             <testResource>
-                <directory>src/integration/java</directory>
+                <directory>src/test/java</directory>
             </testResource>
         </testResources>
     </build>
@@ -229,7 +229,7 @@
             </activation>
             <properties>
                 <!-- by default, add also the int tests -->
-                <test-source-directory>src/integration/java</test-source-directory>
+                <test-source-directory>src/test/java</test-source-directory>
             </properties>
         </profile>
         <profile>
