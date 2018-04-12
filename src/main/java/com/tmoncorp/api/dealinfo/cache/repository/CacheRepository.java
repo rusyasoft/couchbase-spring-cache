@@ -1,4 +1,4 @@
-package com.couchbase.client.spring.cache.repository;
+package com.tmoncorp.api.dealinfo.cache.repository;
 
 import java.lang.reflect.Type;
 

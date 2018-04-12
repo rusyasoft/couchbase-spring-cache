@@ -1,4 +1,4 @@
-package com.couchbase.client.spring.cache.annotation;
+package com.tmoncorp.api.dealinfo.cache.annotation;
 
 import java.lang.annotation.*;
 

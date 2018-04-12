@@ -1,9 +1,9 @@
-package com.couchbase.client.spring.cache.aspect;
+package com.tmoncorp.api.dealinfo.cache.aspect;
 
 
-import com.couchbase.client.spring.cache.annotation.MethodCache;
-import com.couchbase.client.spring.cache.repository.CacheRepository;
-import com.couchbase.client.spring.cache.util.JsonUtils;
+import com.tmoncorp.api.dealinfo.cache.annotation.MethodCache;
+import com.tmoncorp.api.dealinfo.cache.repository.CacheRepository;
+import com.tmoncorp.api.dealinfo.cache.util.JsonUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -32,7 +32,7 @@ public class CacheAspect {
     @Qualifier("couchbaseCacheRepository")
     CacheRepository cacheRepository;
 
-    @Around("@annotation(com.couchbase.client.spring.cache.annotation.MethodCache)")
+    @Around("@annotation(com.tmoncorp.api.dealinfo.cache.annotation.MethodCache)")
     public Object anotherMethod(final ProceedingJoinPoint jointPoint) throws Throwable {
 
         System.out.println("-------- inside anotherMethod ---------");

@@ -1,4 +1,4 @@
-package com.tmoncorp.api.dealinfo.connector;
+package com.tmoncorp.api.dealinfo.constants;
 
 
 import java.util.ArrayList;

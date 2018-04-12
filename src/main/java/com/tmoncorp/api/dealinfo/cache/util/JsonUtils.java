@@ -1,4 +1,4 @@
-package com.couchbase.client.spring.cache.util;
+package com.tmoncorp.api.dealinfo.cache.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

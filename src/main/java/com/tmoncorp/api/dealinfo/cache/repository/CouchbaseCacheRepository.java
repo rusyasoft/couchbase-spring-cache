@@ -1,4 +1,4 @@
-package com.couchbase.client.spring.cache.repository;
+package com.tmoncorp.api.dealinfo.cache.repository;
 
 import com.couchbase.client.java.Bucket;
 import com.couchbase.client.java.document.JsonArrayDocument;
@@ -6,7 +6,7 @@ import com.couchbase.client.java.document.JsonDocument;
 import com.couchbase.client.java.document.RawJsonDocument;
 import com.couchbase.client.java.document.json.JsonArray;
 import com.couchbase.client.java.document.json.JsonObject;
-import com.couchbase.client.spring.cache.util.JsonUtils;
+import com.tmoncorp.api.dealinfo.cache.util.JsonUtils;
 import com.tmoncorp.api.dealinfo.connector.CouchBaseConnector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

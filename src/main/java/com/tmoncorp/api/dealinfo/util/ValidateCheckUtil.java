@@ -1,4 +1,4 @@
-package com.tmoncorp.api.dealinfo.connector;
+package com.tmoncorp.api.dealinfo.util;
 
 
 import org.apache.commons.lang3.StringUtils;

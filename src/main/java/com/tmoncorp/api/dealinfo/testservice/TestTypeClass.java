@@ -1,4 +1,4 @@
-package com.couchbase.client.spring.cache;
+package com.tmoncorp.api.dealinfo.testservice;
 
 public class TestTypeClass {
     public int a;
